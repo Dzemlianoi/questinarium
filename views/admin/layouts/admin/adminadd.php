@@ -8,6 +8,7 @@
             <label for="password">New admin's password</label>
             <input type="password" class="form-control" id="pass" name="password" placeholder="Put your password">
         </div>
-        <button onclick="adminRegistry()" type="button" class="btn btn-primary admin-submit admin-add-butt">Registry</button>
+
+        <button type="button" class="btn btn-primary admin-submit admin-add-butt">Registry</button>
     </form>
 </div>

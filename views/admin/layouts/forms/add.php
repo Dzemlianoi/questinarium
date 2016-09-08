@@ -7,5 +7,5 @@
         <label for="order">New form's order</label>
         <input type="number" min="1" name="order" class="form-input-number form-control" id="order">
     </div>
-    <button type="button" class="btn btn-primary form-submit admin-submit admin-add-butt">Create</button>
+    <button type="button" class="btn btn-primary form-add-forms admin-submit admin-add-butt">Create</button>
 </form>

@@ -4,10 +4,28 @@
 namespace app\controllers;
 
 use app\models\Forms;
+use app\models\Admins;
 
 class AdminController extends \yii\web\Controller
 {
     public $layout='admin';
+
+    public function isGuest()
+    {
+        return empty($_SESSION['user']);
+    }
+
+    public function renderSmthForms($url){
+        $data=Forms::getAllForms();
+        return $this->renderAjax($url,['data'=>$data]);
+    }
+
+    public function renderSmthAdmins($url){
+        $data=Admins::find()->all();
+        return $this->renderAjax($url,['data'=>$data]);
+    }
+
+    //actions
 
     public function actionIndex() {
         if ($this->isGuest()) {
@@ -17,7 +35,22 @@ class AdminController extends \yii\web\Controller
         }
     }
 
-    public function actionForms(){
+    public function actionShowformadd(){
+        return $this->renderAjax('./layouts/forms/add.php');
+    }
+
+    public function actionShowformdelete(){
+        $url='./layouts/forms/delete.php';
+        return $this->renderSmthForms($url);
+    }
+
+    public function actionShowformchange(){
+        $url='./layouts/forms/changeorder.php';
+        return $this->renderSmthForms($url);
+    }
+
+    public function actionAddform(){
+        $url='./layouts/forms/main.php';
         if (!empty($_GET['order'])){
             $order=$_GET['order'];
             $name=$_GET['name'];
@@ -27,59 +60,55 @@ class AdminController extends \yii\web\Controller
             $form->order=$order;
             $form->name=$name;
             if ($form->save()){
-                $data=Forms::getAllForms();
-                return $this->renderAjax('./layouts/forms/main.php',['data'=>$data]);
+                return $this->renderSmthForms($url);;
             }else{
                 echo 0;
                 return;
             }
         }
-
-        $data=Forms::getAllForms();
-        return $this->renderAjax('./layouts/forms/main.php',['data'=>$data]);
+        return $this->renderSmthForms($url);;
     }
 
-    public function actionShowformdelete(){
-        $data=Forms::getAllForms();
-        return $this->renderAjax('./layouts/forms/delete.php',['data'=>$data]);
-    }
-
-    public function actionFormdelete(){
+    public function actionDeleteform(){
         $id=$_GET['id'];
         $form=Forms::find()->where(['id'=>$id])->one();
         if ($form->delete()){
-            $data=Forms::getAllForms();
-            return $this->renderAjax('./layouts/forms/main.php',['data'=>$data]);
+            $url='./layouts/forms/main.php';
+            return $this->renderSmthForms($url);
         }else{
             echo 0;
             return;
         }
-
     }
 
-    public function actionFormChange(){
-        if (!empty($_GET['order'])){
-            $order=$_GET['order'];
-            $name=$_GET['name'];
+    public function actionChangeform(){
 
-            $form=new Forms();
+        if (!empty($_GET['id1'])){
+            $form1=Forms::find()->where(['id'=>$_GET['id1']])->one();
+            $form2=Forms::find()->where(['id'=>$_GET['id2']])->one();
 
-            $form->order=$order;
-            $form->name=$name;
-            if ($form->save()){
-                $data=Forms::getAllForms();
-                return $this->renderAjax('./layouts/forms/main.php',['data'=>$data]);
-            }else{
-                echo 0;
-                return;
-            }
+            $temp1=$form1->order;
+            $temp2=$form2->order;
+
+            $form1->order=399;
+            $form1->update();
+
+            $form2->order=$temp1;
+            $form2->update();
+
+            $form1->order=$temp2;
+            $form1->update();
+
+            $url='./layouts/forms/main.php';
+            return $this->renderSmthForms($url);
         }
-
-
     }
-    public function isGuest()
-    {
-        return empty($_SESSION['user']);
+
+    //Admins
+
+    public function actionAddadminform(){
+        $url='./layouts/admin/main.php';
+        return $this->renderSmthAdmins($url);
     }
 
     public function actionExit(){
