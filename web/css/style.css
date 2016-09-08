@@ -202,18 +202,18 @@ th:nth-child(2), td:nth-child(2) {
 th:nth-child(3), td:nth-child(3) {
     width: 100px;
 }
-th:nth-child(3), td:nth-child(3) {
-    width: 75px;
+th:nth-child(4), td:nth-child(4) {
+    width:100px;
 }
 tr {
     display: table;
-    width: 375px;
+    width: 400px;
     table-layout: fixed;
 }
 tbody {
     display: block;
     height: 154px;
-    width: 375px;
+    width: 400px;
     overflow: hidden;
     overflow-y: auto;
 }

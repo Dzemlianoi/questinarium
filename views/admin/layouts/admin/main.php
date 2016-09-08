@@ -3,9 +3,9 @@
         <thead>
             <tr>
                 <th>ID</th>
+                <th>E-mail</th>
                 <th>Login</th>
                 <th>Password</th>
-                <th>E-mail</th>
             </tr>
             </thead>
         <tbody>
