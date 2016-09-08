@@ -6,12 +6,18 @@ var App={
         $('#forms').click(this.clickForms);
         $('#formadd').click(this.showFormAdd);
         $('.form-submit').click(this.addForm);
+        $('#formchange').click(this.showChangeForm);
+        $('#formdel').click(this.showDelForm);
+        $('.form-delete-form').click(this.formdelete);
     },
     disabling:function(){
         $('#formadd').off('click');
         $('.form-submit').off('click');
         $('.admin-button').off('click');
         $('#forms').off('click');
+        $('#formdel').off('click');
+        $('#formchange').off('click');
+        $('.form-delete-form').off('click');
     },
     categoryChange:function () {
         App.normalizeCat();
@@ -22,16 +28,6 @@ var App={
     normalizeCat:function() {
         $('.admin-button i').removeClass('big-ico');
         $('.admin-button').removeClass('admin-become-active');
-    },
-
-    loadCatTemplate:function(url){
-        $('.form-add-workspace').load(url, function(response, status) {
-            if (status != "error") {
-                $('.form-add-admin').fadeIn('go-hide',function(){
-                    App.init();
-                })
-            }
-        });
     },
 
     clickForms:function(){
@@ -47,49 +43,108 @@ var App={
 
     showFormAdd:function(){
         var url='/views/admin/layouts/forms/add.php';
-        App.loadCatTemplate(url);
-
+        $('.form-add-workspace').load(url, function(response, status) {
+            if (status != "error") {
+                $('.form-add-form').fadeIn('go-hide',function(){
+                    App.init();
+                })
+            }
+        });
     },
 
     wpBecomeEmpty:function(){
         $('.wrapper-work-admin').empty();
     },
 
-    addForm:function(){
-        var name=$('#name').val();
-        var order=$('#order').val();
-        var message='';
-        var state='';
+    addForm:function() {
+        var name = $('#name').val();
+        var order = $('#order').val();
+        var message = '';
+        var state = '';
         $.ajax({
             url: "/web/index.php?r=admin/forms",
-            data: "name="+name+"&order="+order,
-            success:function(data){
+            data: "name=" + name + "&order=" + order,
+            success: function (data) {
                 console.log(data);
-               if (data==0){
-                   message='Form name or order isn\'t unique';
-                   state='error';
-               }else{
-                   message='Your form added';
-                   state='success';
-                   App.wpBecomeEmpty();
-                   $('.wrapper-work-admin').prepend(data);
-               }
+                if (data == 0) {
+                    message = 'Form name or order isn\'t unique';
+                    state = 'error';
+                } else {
+                    message = 'Your form added';
+                    state = 'success';
+                    App.wpBecomeEmpty();
+                    $('.wrapper-work-admin').prepend(data);
+                }
 
 
-                var url='/views/admin/layouts/messages/message.php';
-                $('.form-add-workspace').load(url, function(response, status) {
+                var url = '/views/admin/layouts/messages/message.php';
+                $('.form-add-workspace').load(url, function (response, status) {
                     if (status != "error") {
-                        $('.message-admin').text(message).addClass('message-'+state);
-                        $('.message-admin').fadeIn('go-hide',function(){
+                        $('.message-admin').text(message).addClass('message-' + state);
+                        $('.message-admin').fadeIn('go-hide', function () {
                             App.init();
                         })
                     }
                 });
             }
         });
+    },
 
+    showChangeForm:function(){
+        var url='/views/admin/layouts/forms/change.php';
+        $('.form-add-workspace').load(url, function(response, status) {
+            if (status != "error") {
+                $('.form-change').fadeIn('go-hide',function(){
+                    App.init();
+                })
+            }
+        });
+    },
 
+    showDelForm:function(){
+        $.ajax({
+            url: "/web/index.php?r=admin/showformdelete",
+            success: function (data) {
+                $('.form-add-workspace').empty().append(data);
+                $('.form-delete').fadeIn('go-hide',function(){
+                    App.init();
+                })
+            }
+        })
+    },
+
+    formdelete:function(){
+        var message;
+        var state;
+        var id=$('select option:selected').val();
+        $.ajax({
+            url: "/web/index.php?r=admin/formdelete",
+            data:'id='+id,
+            success: function (data) {
+                if (data==0){
+                    message = 'Current form has questions';
+                    state = 'error';
+                }else{
+                    message = 'Form deleted';
+                    state = 'success';
+                    App.wpBecomeEmpty();
+                    $('.wrapper-work-admin').prepend(data);
+                }
+
+                var url = '/views/admin/layouts/messages/message.php';
+                $('.form-add-workspace').load(url, function (response, status) {
+                    if (status != "error") {
+                        $('.message-admin').text(message).addClass('message-' + state);
+                        $('.message-admin').fadeIn('go-hide', function () {
+                            App.init();
+                        })
+                    }
+                });
+            }
+        })
     }
+
+
 
 
 };
@@ -127,7 +182,7 @@ App.init();
 // function showFormForAdd(url){
 //     $('.form-add-workspace').load(url, function(response, status, xhr) {
 //         if (status != "error") {
-            $('.form-add-admin').fadeIn('go-hide');
+//             $('.form-add-admin').fadeIn('go-hide');
 //         }
 //     });
 // }

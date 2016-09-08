@@ -1,4 +1,4 @@
-<form class="form-add-admin form-add-admin-low go-hide" role="form" method="post">
+<form class="form-add-form form-add-form-low go-hide" role="form" method="post">
     <div class="form-group admin-form-group">
         <label for="name">New Form's name</label>
         <input type="text" class="form-control" id="name" name="name" placeholder="Name">
