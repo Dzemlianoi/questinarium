@@ -106,8 +106,13 @@ class AdminController extends \yii\web\Controller
 
     //Admins
 
-    public function actionAddadminform(){
+    public function actionShowadmins(){
         $url='./layouts/admin/main.php';
+        return $this->renderSmthAdmins($url);
+    }
+
+    public function actionShowadminadd(){
+        $url='./layouts/admin/adminadd.php';
         return $this->renderSmthAdmins($url);
     }
 

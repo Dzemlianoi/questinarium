@@ -14,6 +14,8 @@ var App={
 
         //Admins
         $('#admins').click(this.clickAdmins);
+        $('#adminadd').click(this.showAdminAdd);
+        $('.admin-add-butt').click(this.addAdmin);
 
     },
     disabling:function(){
@@ -27,6 +29,8 @@ var App={
         $('.form-submit').off('click');
         $('.form-changeorder-form').off('click');
         $('.form-delete-form').off('click');
+        $('#adminadd').off('click');
+        $('.admin-add-butt').off('click');
     },
 
     showForm:function(url,form){
@@ -172,7 +176,27 @@ var App={
     //Admins
     clickAdmins:function(){
         $.ajax({
-            url: "/web/index.php?r=admin/addadminform",
+            url: "/web/index.php?r=admin/showadmins",
+            success:function(data){
+                App.wpBecomeEmpty();
+                $('.wrapper-work-admin').prepend(data);
+                App.init();
+            }
+        })
+    },
+
+    showAdminAdd:function(){
+        var url="/web/index.php?r=admin/showadminadd";
+        var form='.form-add-admin';
+        return App.showForm(url,form);
+    },
+
+    addAdmin:function(){
+        var login=$('#login').val();
+        var password=$('#pass').val();
+        $.ajax({
+            url: "/web/index.php?r=admin/addadmin",
+            data:'login='+login+'&password='+password,
             success:function(data){
                 App.wpBecomeEmpty();
                 $('.wrapper-work-admin').prepend(data);
@@ -183,27 +207,5 @@ var App={
 };
 
 App.init();
-
-//
-// function adminRegistry(){
-//     var login=$('#login').val();
-//     var password=$('#pass').val();
-//     var form_block=$('.form-add-admin');
-//
-//     $.ajax({
-//         type: "POST",
-//         url: "/admin/adminadd",
-//         data: "login="+login+"&password="+password,
-//         success: function(data){
-//             var data_array=JSON.parse(data);
-//             var message=data_array['message'];
-//             var status=data_array['status'];
-//
-//             adminInsertMessage(status,message);
-//
-//             form_block.addClass('form-add-admin-middle');
-//         }
-//     });
-// }
 
 
