@@ -194,13 +194,24 @@ var App={
     addAdmin:function(){
         var login=$('#login').val();
         var password=$('#pass').val();
+        var email=$('#email').val();
+        var message,state;
+
         $.ajax({
             url: "/web/index.php?r=admin/addadmin",
-            data:'login='+login+'&password='+password,
+            data:'login='+login+'&password='+password+'&email='+email,
             success:function(data){
-                App.wpBecomeEmpty();
-                $('.wrapper-work-admin').prepend(data);
-                App.init();
+                if (data==0){
+                    message = 'Login isn\'t unique';
+                    state = 'error';
+                }else{
+                    message = 'Admin added';
+                    state = 'success';
+                    App.wpBecomeEmpty();
+                    $('.wrapper-work-admin').prepend(data);
+                }
+                var url = '/views/admin/layouts/messages/message.php';
+                App.showMessage(url,message,state);
             }
         })
     }

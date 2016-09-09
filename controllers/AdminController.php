@@ -116,6 +116,24 @@ class AdminController extends \yii\web\Controller
         return $this->renderSmthAdmins($url);
     }
 
+    public function actionAddadmin(){
+        $admin=new Admins();
+        $admin->login=$_GET['login'];
+        $admin->password=md5($_GET['password']);
+
+        if (!empty($_GET['email'])){
+            $admin->email=$_GET['email'];
+        }
+
+        if ($admin->save()){
+            $url='./layouts/admin/main.php';
+            return $this->renderSmthAdmins($url);
+        }else{
+            echo $admin->email;
+            return;
+        }
+    }
+
     public function actionExit(){
         session_destroy();
         return $this->goHome();
