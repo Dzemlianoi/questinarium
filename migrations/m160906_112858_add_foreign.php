@@ -8,15 +8,12 @@ class m160906_112858_add_foreign extends Migration
     {
         $this->addForeignKey('question_id','answers','question_id', 'questions','id');
         $this->addForeignKey('form_id','questions','form_id', 'forms','id');
-
     }
 
     public function down()
     {
-
         $this->dropForeignKey('question_id','answers');
         $this->dropForeignKey('form_id','questions');
-
     }
 
     /*

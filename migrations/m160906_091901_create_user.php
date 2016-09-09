@@ -11,7 +11,7 @@ class m160906_091901_create_user extends Migration
             'id'=>$this->primaryKey(),
             'login'=>$this->string(40)->unique()->notNull(),
             'password'=>$this->string(32)->notNull(),
-            'email'=>$this->string(45)->unique()->notNull(),
+            'email'=>$this->string(45),
         ]);
 
     }
