@@ -18,22 +18,24 @@ var App={
         $('#admindel').click(this.showAdminDel);
 
         $('.admin-add-butt').click(this.addAdmin);
+        $('.admin-remove').click(this.delAdmin);
 
     },
     disabling:function(){
-        $('.admin-button').off('click');
-
         $('#forms').off('click');
         $('#formadd').off('click');
         $('#formchange').off('click');
         $('#formdel').off('click');
-
         $('.form-submit').off('click');
         $('.form-changeorder-form').off('click');
         $('.form-delete-form').off('click');
+
+        $('#admins').off('click');
+        $('.admin-button').off('click');
         $('#adminadd').off('click');
         $('.admin-add-butt').off('click');
         $('#admindel').off('click');
+        $('.admin-remove').off('click');
 
     },
 
@@ -216,6 +218,30 @@ var App={
                     state = 'error';
                 }else{
                     message = 'Admin added';
+                    state = 'success';
+                    App.wpBecomeEmpty();
+                    $('.wrapper-work-admin').prepend(data);
+                }
+                var url = '/views/admin/layouts/messages/message.php';
+                App.showMessage(url,message,state);
+            }
+        })
+    },
+
+    delAdmin:function(){
+        var id=$('select option:selected').val();
+
+        $.ajax({
+            url: "/web/index.php?r=admin/del-admin",
+            data:{
+                'id':id
+            },
+            success:function(data){
+                if (data==0){
+                    message = 'Current admin might not be deleted';
+                    state = 'error';
+                }else{
+                    message = 'Admin was deleted';
                     state = 'success';
                     App.wpBecomeEmpty();
                     $('.wrapper-work-admin').prepend(data);

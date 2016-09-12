@@ -139,6 +139,18 @@ class AdminController extends \yii\web\Controller
         return $this->renderSmthAdmins($url);
     }
 
+    public function actionDelAdmin($id){
+        $login=$_SESSION['user'];
+        $admin=Admins::find()->where(['id'=>$id])->one();
+
+        if ($login!=$admin['login']){
+            $admin->delete();
+            return $this->actionShowadmins();
+        }else{
+            echo 0;
+        }
+    }
+
     public function actionExit(){
         session_destroy();
         return $this->goHome();
