@@ -134,6 +134,11 @@ class AdminController extends \yii\web\Controller
         }
     }
 
+    public function actionShowadmindel(){
+        $url='./layouts/admin/delete.php';
+        return $this->renderSmthAdmins($url);
+    }
+
     public function actionExit(){
         session_destroy();
         return $this->goHome();

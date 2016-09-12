@@ -11,10 +11,12 @@ var App={
         $('.form-changeorder-form').click(this.chOrderForm);
         $('.form-add-forms').click(this.addForm);
         $('.form-delete-form').click(this.delForm);
-
         //Admins
         $('#admins').click(this.clickAdmins);
+
         $('#adminadd').click(this.showAdminAdd);
+        $('#admindel').click(this.showAdminDel);
+
         $('.admin-add-butt').click(this.addAdmin);
 
     },
@@ -31,6 +33,8 @@ var App={
         $('.form-delete-form').off('click');
         $('#adminadd').off('click');
         $('.admin-add-butt').off('click');
+        $('#admindel').off('click');
+
     },
 
     showForm:function(url,form){
@@ -188,6 +192,12 @@ var App={
     showAdminAdd:function(){
         var url="/web/index.php?r=admin/showadminadd";
         var form='.form-add-admin';
+        return App.showForm(url,form);
+    },
+
+    showAdminDel:function () {
+        var url="/web/index.php?r=admin/showadmindel";
+        var form='.admin-delete';
         return App.showForm(url,form);
     },
 
