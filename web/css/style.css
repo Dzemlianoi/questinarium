@@ -228,7 +228,7 @@ tbody {
     margin:20px auto 0px;
     min-height:65px;
 }
-.form-delete{
+.form-delete,.admin-delete{
     width:30%;
     margin:35px auto 0;
 }
@@ -236,7 +236,7 @@ tbody {
     display:inline-block;
 }
 .form-delete select{
-    width:65%;
+    width:64%;
 }
 .form-change{
     width:50%;
