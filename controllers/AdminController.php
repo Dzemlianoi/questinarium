@@ -5,6 +5,7 @@ namespace app\controllers;
 
 use app\models\Forms;
 use app\models\Admins;
+use app\models\Questions;
 
 class AdminController extends \yii\web\Controller
 {
@@ -15,6 +16,8 @@ class AdminController extends \yii\web\Controller
         return empty($_SESSION['user']);
     }
 
+    //rendering
+
     public function renderSmthForms($url){
         $data=Forms::getAllForms();
         return $this->renderAjax($url,['data'=>$data]);
@@ -22,6 +25,11 @@ class AdminController extends \yii\web\Controller
 
     public function renderSmthAdmins($url){
         $data=Admins::find()->all();
+        return $this->renderAjax($url,['data'=>$data]);
+    }
+
+    public function renderSmthQuestions($url){
+        $data=Questions::getAllQuestions();
         return $this->renderAjax($url,['data'=>$data]);
     }
 
@@ -149,6 +157,11 @@ class AdminController extends \yii\web\Controller
         }else{
             echo 0;
         }
+    }
+
+    public function actionShowQuestions(){
+        $url='./layouts/questions/main.php';
+        return $this->renderSmthQuestions($url);
     }
 
     public function actionExit(){

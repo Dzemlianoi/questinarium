@@ -67,4 +67,9 @@ class Questions extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Forms::className(), ['id' => 'form_id']);
     }
+
+    public static function getAllQuestions(){
+        $questions = Questions::find()->joinWith('answers')->joinWith('form')->asArray()->all();
+        return $questions;
+    }
 }

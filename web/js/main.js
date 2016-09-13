@@ -20,6 +20,9 @@ var App={
         $('.admin-add-butt').click(this.addAdmin);
         $('.admin-remove').click(this.delAdmin);
 
+        //Questions
+        $('#questions').click(this.clickQuestions);
+
     },
     disabling:function(){
         $('#forms').off('click');
@@ -250,7 +253,21 @@ var App={
                 App.showMessage(url,message,state);
             }
         })
+    },
+
+    //Questions
+
+    clickQuestions:function(){
+        $.ajax({
+            url: "/web/index.php?r=admin/show-questions",
+            success:function(data){
+                App.wpBecomeEmpty();
+                $('.wrapper-work-admin').prepend(data);
+                App.init();
+            }
+        })
     }
+
 };
 
 App.init();

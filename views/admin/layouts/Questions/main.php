@@ -2,7 +2,6 @@
     <table class="forms-show questions-show">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Question</th>
                 <th>Type</th>
                 <th>Form</th>
@@ -11,9 +10,9 @@
             </thead>
         <tbody>
         <?php
-//            foreach ($data as $question){
-//                echo $this->render('row.php',['question'=>$question]);
-//            }
+            foreach ($data as $question){
+                echo $this->render('row.php',['question'=>$question]);
+            }
         ?>
         </tbody>
     </table>
