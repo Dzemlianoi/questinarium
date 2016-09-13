@@ -244,7 +244,7 @@ var App={
                     message = 'Current admin might not be deleted';
                     state = 'error';
                 }else{
-                    message = 'Admin was deleted';
+                    message = 'Admin was deleteed';
                     state = 'success';
                     App.wpBecomeEmpty();
                     $('.wrapper-work-admin').prepend(data);
