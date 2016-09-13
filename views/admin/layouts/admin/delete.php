@@ -5,7 +5,6 @@
             echo $this->render('option.php',['admin'=>$admin]);
         }
     ?>
-
     </select>
     <button type="button" class="btn btn-primary admin-submit admin-remove">Delete</button>
 </form>

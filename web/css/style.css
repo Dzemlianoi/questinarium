@@ -96,6 +96,9 @@ div.message-error{
     display:block;
     width:100px;
 }
+.admin-remove{
+    margin-top: 30px;
+}
 .left-pannel{
     height:615px;
     width:105px;
@@ -209,6 +212,7 @@ th:nth-child(3), td:nth-child(3) {
 th:nth-child(4), td:nth-child(4) {
     width:100px;
 }
+
 tr {
     display: table;
     width: 400px;
@@ -220,6 +224,43 @@ tbody {
     width: 400px;
     overflow: hidden;
     overflow-y: auto;
+}
+
+/*Questions*/
+
+.questions-show th:nth-child(1), .questions-show td:nth-child(1) {
+    width: 200px;
+}
+.questions-show th:nth-child(2), .questions-show td:nth-child(2) {
+    width: 75px;
+}
+.questions-show th:nth-child(3), .questions-show td:nth-child(3) {
+    width: 75px;
+}
+.questions-show th:nth-child(4), .questions-show td:nth-child(4) {
+    width:175px;
+}
+
+.questions-show td{
+    text-align: justify ;
+}
+
+.questions-show th{
+    text-align: center;
+}
+
+.questions-show tr {
+    display: table;
+    width: 525px;
+    table-layout: fixed;
+}
+.questions-show tbody {
+    display: block;
+    height: 400px;
+    width: 525px;
+    overflow: hidden;
+    overflow-y: auto;
+
 }
 .form-input-number{
     width:60px;
