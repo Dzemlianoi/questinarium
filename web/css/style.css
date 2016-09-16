@@ -291,3 +291,27 @@ tbody {
     display:block;
     font-size:16px;
 }
+
+/*Questions*/
+.field-row{
+    width:100%;
+    padding:10px 15px;
+}
+.field-number,.field-label, .field-row select, .field-row button, .field-row input[type='text']{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.field-row select, .field-row input[type='text']{
+    width:20%;
+}
+.field-number{
+    font-size:60px;
+    width:60px;
+}
+.field-label{
+    font-size:30px;
+}
+.field-row button{
+    width:100px;
+}

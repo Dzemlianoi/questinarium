@@ -1,5 +1,6 @@
 var App={
     part:0,
+    typesWithAnswers:['checkbox','radio'],
     init:function(){
         App.disabling();
         $('.admin-button').click(this.categoryChange);
@@ -22,6 +23,9 @@ var App={
 
         //Questions
         $('#questions').click(this.clickQuestions);
+        $('#questionadd').click(this.showQuestionsAdd);
+        $('#questiontype').click(this.showQuestionName);
+        $('#questionname').click(this.showQuestionAnswers);
 
     },
     disabling:function(){
@@ -39,6 +43,11 @@ var App={
         $('.admin-add-butt').off('click');
         $('#admindel').off('click');
         $('.admin-remove').off('click');
+
+        $('#questionadd').off('click');
+        $('#questions').off('click');
+        $('#questiontype').off('click');
+        $('#questionname').off('click');
 
     },
 
@@ -266,6 +275,59 @@ var App={
                 App.init();
             }
         })
+    },
+
+    showQuestionsAdd:function(){
+        var url="/web/index.php?r=admin/show-add-question";
+        var form='.form-add-questions';
+        $.ajax({
+            url:url,
+            success: function (data) {
+                App.wpBecomeEmpty();
+                $('.wrapper-work-admin').append(data);
+                $(form).fadeIn('go-hide',function(){
+                    App.init();
+                })
+            }
+        });
+        return App.showForm(url,form);
+    },
+
+    showQuestionName:function(){
+        var url="/web/index.php?r=admin/show-add-question-name";
+        var form='.question-add-name';
+        $.ajax({
+            url:url,
+            success: function (data) {
+                $('#questiontype').detach();
+                $('.form-add-questions').append(data);
+                $(form).fadeIn('go-hide',function(){
+                    App.init();
+                })
+            }
+        });
+        return App.showForm(url,form);
+    },
+
+    showQuestionAnswers:function(){
+        var type=$('.type-question-choose option:selected').val();
+        if (App.typesWithAnswers.indexOf(type)!=-1){
+            var url="/web/index.php?r=admin/show-add-question-answers";
+            var form='.question-answers';
+            $.ajax({
+                url:url,
+                success: function (data) {
+                    $('#questionname').detach();
+                    $('.form-add-questions').append(data);
+                    $(form).fadeIn('go-hide',function(){
+                        App.init();
+                    })
+                }
+            });
+            return App.showForm(url,form);
+        }else{
+            return 0;
+        }
     }
 
 };

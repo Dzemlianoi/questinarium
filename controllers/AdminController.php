@@ -44,7 +44,7 @@ class AdminController extends \yii\web\Controller
     }
 
     public function actionShowformadd(){
-        return $this->renderAjax('./layouts/forms/add.php');
+        return $this->renderAjax('./layouts/forms/type.php');
     }
 
     public function actionShowformdelete(){
@@ -161,6 +161,21 @@ class AdminController extends \yii\web\Controller
 
     public function actionShowQuestions(){
         $url='./layouts/questions/main.php';
+        return $this->renderSmthQuestions($url);
+    }
+
+    public function actionShowAddQuestion(){
+        $url='./layouts/Questions/add/type.php';
+        return $this->renderSmthQuestions($url);
+    }
+
+    public function actionShowAddQuestionName(){
+        $url='./layouts/Questions/add/name.php';
+        return $this->renderSmthQuestions($url);
+    }
+
+    public function actionShowAddQuestionAnswers(){
+        $url='./layouts/Questions/add/answers.php';
         return $this->renderSmthQuestions($url);
     }
 
