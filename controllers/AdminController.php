@@ -169,14 +169,28 @@ class AdminController extends \yii\web\Controller
         return $this->renderSmthQuestions($url);
     }
 
-    public function actionShowAddQuestionName(){
+    public function actionShowAddQuestionName($button){
         $url='./layouts/Questions/add/name.php';
-        return $this->renderSmthQuestions($url);
+        return $this->renderAjax($url,['data'=>$button]);
     }
 
     public function actionShowAddQuestionAnswers(){
         $url='./layouts/Questions/add/answers.php';
         return $this->renderSmthQuestions($url);
+    }
+
+    public function actionAddAdditionalAnswer(){
+        $url='./layouts/Questions/add/answer.php';
+        return $this->renderAjax($url);
+    }
+
+    public function actionSaveQuestion($name,$type,$answers=NULL){
+        echo ($name.'<br/>'.$type.'<br/>');
+        if (!empty($answers)){
+            $php_answers=json_decode($answers);
+            echo $php_answers[0];
+        }
+
     }
 
     public function actionExit(){

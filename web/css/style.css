@@ -315,3 +315,17 @@ tbody {
 .field-row button{
     width:100px;
 }
+.more-answers, .answers input{
+    display:inline-block;
+}
+.answers{
+    margin-bottom:20px;
+}
+#questionsubmit{
+    display:block;
+    margin-left: 70px;
+    margin-top:20px;
+}
+.answer{
+    margin-bottom:20px;
+}

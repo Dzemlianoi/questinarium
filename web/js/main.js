@@ -26,6 +26,8 @@ var App={
         $('#questionadd').click(this.showQuestionsAdd);
         $('#questiontype').click(this.showQuestionName);
         $('#questionname').click(this.showQuestionAnswers);
+        $('.more-answers').click(this.showAdditionalAnswer);
+        $('#questionsubmit').click(this.saveQuestion);
 
     },
     disabling:function(){
@@ -48,6 +50,10 @@ var App={
         $('#questions').off('click');
         $('#questiontype').off('click');
         $('#questionname').off('click');
+        $('.more-answers').off('click');
+        $('#questionsubmit').off('click');
+
+
 
     },
 
@@ -294,42 +300,85 @@ var App={
     },
 
     showQuestionName:function(){
+        var type=$('.type-question-choose option:selected').val();
         var url="/web/index.php?r=admin/show-add-question-name";
         var form='.question-add-name';
+        var button=App.typesWithAnswers.indexOf(type)!=-1?'next':'save';
         $.ajax({
             url:url,
+            data:{
+              button:button
+            },
             success: function (data) {
                 $('#questiontype').detach();
+                $('.type-question-choose').prop('disabled','disabled');
                 $('.form-add-questions').append(data);
                 $(form).fadeIn('go-hide',function(){
                     App.init();
                 })
             }
         });
-        return App.showForm(url,form);
     },
 
     showQuestionAnswers:function(){
         var type=$('.type-question-choose option:selected').val();
         if (App.typesWithAnswers.indexOf(type)!=-1){
-            var url="/web/index.php?r=admin/show-add-question-answers";
-            var form='.question-answers';
-            $.ajax({
-                url:url,
-                success: function (data) {
-                    $('#questionname').detach();
-                    $('.form-add-questions').append(data);
-                    $(form).fadeIn('go-hide',function(){
-                        App.init();
-                    })
-                }
-            });
-            return App.showForm(url,form);
-        }else{
-            return 0;
+            if ($('.question-name-input').val()!='') {
+                var url = "/web/index.php?r=admin/show-add-question-answers";
+                var form = '.question-answers';
+                $.ajax({
+                    url: url,
+                    success: function (data) {
+                        $('#questionname').detach();
+                        $('.form-add-questions').append(data);
+                        $(form).fadeIn('go-hide', function () {
+                            App.init();
+                        })
+                    }
+                });
+                return App.showForm(url, form);
+            }
         }
-    }
+    },
 
+    showAdditionalAnswer:function(){
+        var url="/web/index.php?r=admin/add-additional-answer";
+        $.ajax({
+            url:url,
+            success: function (data) {
+                $('.more-answers').detach();
+                $('.answers').append(data);
+                App.init();
+            }
+        });
+    },
+    getAllAnswers:function () {
+        var answer_values=[];
+        $('.answer-input').each(function(){
+            if ($(this).val()!=''){
+                answer_values.push($(this).val())
+            }
+        });
+        return answer_values;
+    },
+
+    saveQuestion:function(){
+        var answers=$(this).hasClass('with-answers')?App.getAllAnswers():'';
+        var type=$('.type-question-choose option:selected').val();
+        var name=$('.question-name-input').val();
+        var url="/web/index.php?r=admin/save-question";
+        $.ajax({
+            url:url,
+            data:{
+                name:name,
+                type:type,
+                answers:JSON.stringify(answers)
+            },
+            success: function (data) {
+                console.log(data)
+            }
+        });
+    }
 };
 
 App.init();
