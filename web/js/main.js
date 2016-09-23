@@ -301,15 +301,10 @@ var App={
     },
 
     showQuestionName:function(){
-        var type=$('.type-question-choose option:selected').val();
         var url="/web/index.php?r=admin/show-add-question-name";
         var form='.question-add-name';
-        var button=App.typesWithAnswers.indexOf(type)!=-1?'next':'save';
         $.ajax({
             url:url,
-            data:{
-              button:button
-            },
             success: function (data) {
                 $('#questiontype').detach();
                 $('.type-question-choose').prop('disabled','disabled');
@@ -322,10 +317,15 @@ var App={
     },
 
     showQuestionForm:function(){
+        var type=$('.type-question-choose option:selected').val();
         var url = "/web/index.php?r=admin/show-add-question-formid";
         var form='.question-formid';
+        var button=App.typesWithAnswers.indexOf(type)!=-1?'next':'save';
         $.ajax({
             url: url,
+            data:{
+                button:button
+            },
             success: function (data) {
                 $('#questionname').detach();
                 $('.form-add-questions').append(data);

@@ -173,13 +173,15 @@ class AdminController extends \yii\web\Controller
         return $this->renderSmthQuestions($url);
     }
 
-    public function actionShowAddQuestionName($button){
+    public function actionShowAddQuestionName(){
         $url='./layouts/Questions/add/name.php';
-        return $this->renderAjax($url,['data'=>$button]);
+        return $this->renderAjax($url);
     }
 
-    public function actionShowAddQuestionFormid(){
-        $data=Forms::getAllForms();
+    public function actionShowAddQuestionFormid($button){
+        $forms=Forms::getAllForms();
+        $data['forms']=$forms;
+        $data['button']=$button;
         $url='./layouts/Questions/add/formid.php';
         return $this->renderAjax($url,['data'=>$data]);
     }
