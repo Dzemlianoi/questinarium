@@ -1,4 +1,4 @@
-<div class="show-form-div">
+<div class="show-form-div questions-form-div">
     <table class="forms-show questions-show">
         <thead>
             <tr>

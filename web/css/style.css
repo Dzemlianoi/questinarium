@@ -163,8 +163,11 @@ div.message-error{
 }
 /*Добавить форму*/
 .show-form-div{
-    width:42%;
+    width:30%;
     margin:30px auto 10px;
+}
+.questions-form-div{
+    width:42%;
 }
 .show-form-div table{
     border-top: none;

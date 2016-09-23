@@ -69,7 +69,7 @@ class Questions extends \yii\db\ActiveRecord
     }
 
     public static function getAllQuestions(){
-        $questions = Questions::find()->joinWith('answers')->joinWith('form')->asArray()->all();
+        $questions = Questions::find()->joinWith('answers')->joinWith('form')->asArray()->orderBy('forms.order')->all();
         return $questions;
     }
 }

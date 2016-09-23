@@ -14,5 +14,5 @@
         }
         ?>
     </select>
-    <button type="button" class="form-changeorder-form btn btn-primary admin-submit admin-add-butt">Change</button>
+    <button type="button" class="form-changeorder-form btn btn-primary admin-submit">Change</button>
 </form>

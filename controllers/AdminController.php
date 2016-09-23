@@ -46,7 +46,7 @@ class AdminController extends \yii\web\Controller
     }
 
     public function actionShowformadd(){
-        return $this->renderAjax('./layouts/forms/type.php');
+        return $this->renderAjax('./layouts/forms/add.php');
     }
 
     public function actionShowformdelete(){
