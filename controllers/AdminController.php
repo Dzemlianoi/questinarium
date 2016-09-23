@@ -159,6 +159,8 @@ class AdminController extends \yii\web\Controller
         }
     }
 
+    //Questions
+
     public function actionShowQuestions(){
         $url='./layouts/questions/main.php';
         return $this->renderSmthQuestions($url);
@@ -174,6 +176,12 @@ class AdminController extends \yii\web\Controller
         return $this->renderAjax($url,['data'=>$button]);
     }
 
+    public function actionShowAddQuestionFormid(){
+        $data=Forms::getAllForms();
+        $url='./layouts/Questions/add/formid.php';
+        return $this->renderAjax($url,['data'=>$data]);
+    }
+
     public function actionShowAddQuestionAnswers(){
         $url='./layouts/Questions/add/answers.php';
         return $this->renderSmthQuestions($url);
@@ -185,7 +193,7 @@ class AdminController extends \yii\web\Controller
     }
 
     public function actionSaveQuestion($name,$type,$answers=NULL){
-        echo ($name.'<br/>'.$type.'<br/>');
+        $question=new Questions;
         if (!empty($answers)){
             $php_answers=json_decode($answers);
             echo $php_answers[0];

@@ -25,7 +25,8 @@ var App={
         $('#questions').click(this.clickQuestions);
         $('#questionadd').click(this.showQuestionsAdd);
         $('#questiontype').click(this.showQuestionName);
-        $('#questionname').click(this.showQuestionAnswers);
+        $('#questionname').click(this.showQuestionForm);
+        $('#questionform').click(this.showQuestionAnswers);
         $('.more-answers').click(this.showAdditionalAnswer);
         $('#questionsubmit').click(this.saveQuestion);
 
@@ -49,7 +50,7 @@ var App={
         $('#questionadd').off('click');
         $('#questions').off('click');
         $('#questiontype').off('click');
-        $('#questionname').off('click');
+        $('#questionform').off('click');
         $('.more-answers').off('click');
         $('#questionsubmit').off('click');
 
@@ -312,6 +313,21 @@ var App={
             success: function (data) {
                 $('#questiontype').detach();
                 $('.type-question-choose').prop('disabled','disabled');
+                $('.form-add-questions').append(data);
+                $(form).fadeIn('go-hide',function(){
+                    App.init();
+                })
+            }
+        });
+    },
+
+    showQuestionForm:function(){
+        var url = "/web/index.php?r=admin/show-add-question-formid";
+        var form='.question-formid';
+        $.ajax({
+            url: url,
+            success: function (data) {
+                $('#questionname').detach();
                 $('.form-add-questions').append(data);
                 $(form).fadeIn('go-hide',function(){
                     App.init();

@@ -1,6 +1,6 @@
 <div class="field-row question-answers go-hide">
     <div>
-        <div class="field-number">3</div>
+        <div class="field-number">4</div>
         <div class="field-label">Pass answers for the question</div>
     </div>
     <div class="answers">
