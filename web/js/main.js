@@ -358,15 +358,17 @@ var App={
     },
 
     showAdditionalAnswer:function(){
-        var url="/web/index.php?r=admin/add-additional-answer";
-        $.ajax({
-            url:url,
-            success: function (data) {
-                $('.more-answers').detach();
-                $('.answers').append(data);
-                App.init();
-            }
-        });
+        if ($(this).siblings().val()!=''){
+            var url="/web/index.php?r=admin/add-additional-answer";
+            $.ajax({
+                url:url,
+                success: function (data) {
+                    $('.more-answers').detach();
+                    $('.answers').append(data);
+                    App.init();
+                }
+            });
+        }
     },
     getAllAnswers:function () {
         var answer_values=[];
@@ -381,19 +383,27 @@ var App={
     saveQuestion:function(){
         var answers=$(this).hasClass('with-answers')?App.getAllAnswers():'';
         var type=$('.type-question-choose option:selected').val();
+        var formid=$('.question-formid select option:selected').val();
         var name=$('.question-name-input').val();
         var url="/web/index.php?r=admin/save-question";
-        $.ajax({
-            url:url,
-            data:{
-                name:name,
-                type:type,
-                answers:JSON.stringify(answers)
-            },
-            success: function (data) {
-                console.log(data)
-            }
-        });
+
+        if ($('.question-name-input').val()!=''){
+            $.ajax({
+                url:url,
+                data:{
+                    name:name,
+                    type:type,
+                    formid:formid,
+                    answers:JSON.stringify(answers)
+                },
+                success: function (data) {
+                    data=='yes'?App.clickQuestions():false;
+                }
+            });
+        }else{
+            $('.question-name-input').focus();
+        }
+
     }
 };
 

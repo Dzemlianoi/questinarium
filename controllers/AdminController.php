@@ -3,12 +3,14 @@
 
 namespace app\controllers;
 
+use app\models\Answers;
 use app\models\Forms;
 use app\models\Admins;
 use app\models\Questions;
 
 class AdminController extends \yii\web\Controller
 {
+    private $type_with_answers=array('radio','checkbox');
     public $layout='admin';
 
     public function isGuest()
@@ -192,13 +194,27 @@ class AdminController extends \yii\web\Controller
         return $this->renderAjax($url);
     }
 
-    public function actionSaveQuestion($name,$type,$answers=NULL){
+    public function actionSaveQuestion($name,$formid,$type,$answers=NULL){
         $question=new Questions;
-        if (!empty($answers)){
-            $php_answers=json_decode($answers);
-            echo $php_answers[0];
+        $question->name=$name;
+        $question->form_id=$formid;
+        $question->type=$type;
+        if ($question->save()){
+            if (in_array($question->type,$this->type_with_answers)){
+                $answers=json_decode($answers);
+                foreach ($answers as $answer_name){
+                    if (!empty ($answer_name)){
+                        $answer=new Answers;
+                        $answer->question_id=$question->id;
+                        $answer->answer=$answer_name;
+                        $answer->save();
+                    }
+                }
+            }
+            echo 'yes';
+        }else{
+            echo 'not';
         }
-
     }
 
     public function actionExit(){
