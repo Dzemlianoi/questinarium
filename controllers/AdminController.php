@@ -223,6 +223,11 @@ class AdminController extends \yii\web\Controller
         $url='./layouts/Questions/delete/delete.php';
         return $this->renderSmthQuestions($url);
     }
+    public function actionDeleteQuestion($id){
+//
+        Answers::deleteAll("question_id=$id");
+        echo Questions::findOne(["id"=>$id])->delete();
+    }
 
     public function actionExit(){
         session_destroy();

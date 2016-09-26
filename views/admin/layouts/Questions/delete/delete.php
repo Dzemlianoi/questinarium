@@ -1,4 +1,4 @@
-<form class="question-delete form-delete go-hide" role="form" method="post">
+<form class="form-question-delete form-delete go-hide" role="form" method="post">
 
     <select class="form-control">
         <?
@@ -7,5 +7,5 @@
         }
         ?>
     </select>
-    <button type="button" class="btn form-delete-form btn-primary admin-submit">Delete</button>
+    <button type="button" class="btn question-delete btn-primary admin-submit">Delete</button>
 </form>

@@ -12,19 +12,14 @@
         <div class="admin-button-name">Questions</div>
     </div>
 
-    <div class="admin-button" id="answers">
-        <i class="admin-button-icon glyphicon glyphicon-edit"></i>
-        <div class="admin-button-name">Answers</div>
+    <div class="admin-button" id="admins">
+        <i class="admin-button-icon glyphicon glyphicon-user"></i>
+        <div class="admin-button-name">Admins</div>
     </div>
 
     <div class="admin-button" id="results">
         <i class="admin-button-icon glyphicon glyphicon-list"></i>
         <div class="admin-button-name">Resuts</div>
-    </div>
-
-    <div class="admin-button" id="admins">
-        <i class="admin-button-icon glyphicon glyphicon-user"></i>
-        <div class="admin-button-name">Admins</div>
     </div>
 
     <div class="admin-button" id="settings">

@@ -30,6 +30,7 @@ var App={
         $('.more-answers').click(this.showAdditionalAnswer);
         $('#questionsubmit').click(this.saveQuestion);
         $('#questiondel').click(this.showDelQuestions);
+        $('.question-delete').click(this.deleteQuestion);
 
     },
     disabling:function(){
@@ -55,9 +56,7 @@ var App={
         $('.more-answers').off('click');
         $('#questionsubmit').off('click');
         $('#questiondel').off('click');
-
-
-
+        $('.question-delete').off('click');
     },
 
     showForm:function(url,form){
@@ -409,8 +408,28 @@ var App={
 
     showDelQuestions:function(){
         var url="/web/index.php?r=admin/show-questions-del-form";
-        var form='.question-delete';
+        var form='.form-question-delete';
         return App.showForm(url,form);
+    },
+
+    deleteQuestion:function(){
+        var message;
+        var state;
+        var id=$('select option:selected').val();
+        $.ajax({
+            url: "/web/index.php?r=admin/delete-question",
+            data:'id='+id,
+            success: function (data) {
+                if (data!=1){
+                    message = 'Question can\'t be deleted';
+                    state = 'error';
+                }else{
+                    message = 'Question deleted';
+                    state = 'success';
+                    App.clickQuestions();
+                }
+            }
+        })
     }
 };
 
