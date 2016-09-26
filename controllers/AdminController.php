@@ -30,8 +30,9 @@ class AdminController extends \yii\web\Controller
         return $this->renderAjax($url,['data'=>$data]);
     }
 
-    public function renderSmthQuestions($url){
-        $data=Questions::getAllQuestions();
+    public function renderSmthQuestions($url,$reindex=null){
+
+        $data=Questions::getAllQuestions($reindex);
         return $this->renderAjax($url,['data'=>$data]);
     }
 
@@ -165,12 +166,12 @@ class AdminController extends \yii\web\Controller
 
     public function actionShowQuestions(){
         $url='./layouts/questions/main.php';
-        return $this->renderSmthQuestions($url);
+        return $this->renderSmthQuestions($url,1);
     }
 
     public function actionShowAddQuestion(){
         $url='./layouts/Questions/add/type.php';
-        return $this->renderSmthQuestions($url);
+        return $this->renderSmthQuestions($url,1);
     }
 
     public function actionShowAddQuestionName(){
@@ -188,7 +189,7 @@ class AdminController extends \yii\web\Controller
 
     public function actionShowAddQuestionAnswers(){
         $url='./layouts/Questions/add/answers.php';
-        return $this->renderSmthQuestions($url);
+        return $this->renderSmthQuestions($url,1);
     }
 
     public function actionAddAdditionalAnswer(){
@@ -224,7 +225,7 @@ class AdminController extends \yii\web\Controller
         return $this->renderSmthQuestions($url);
     }
     public function actionDeleteQuestion($id){
-//
+
         Answers::deleteAll("question_id=$id");
         echo Questions::findOne(["id"=>$id])->delete()?true:0;
     }

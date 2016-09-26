@@ -73,9 +73,12 @@ class Questions extends \yii\db\ActiveRecord
         return $this->hasOne(Forms::className(), ['id' => 'form_id']);
     }
 
-    public static function getAllQuestions(){
+    public static function getAllQuestions($reindex=null){
         $questions = Questions::find()->joinWith('answers')->joinWith('form')->asArray()->orderBy('forms.order')->all();
-        $new_questions=ArrayHelper::index($questions,null,'form.name');
-        return $new_questions;
+        if ($reindex){
+            $questions=ArrayHelper::index($questions,null,'form.name');
+        }
+
+        return $questions;
     }
 }
