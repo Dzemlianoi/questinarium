@@ -2,9 +2,9 @@
     <table class="forms-show">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Name</th>
-                <th>Order</th><th>Q of Questions</th>
+                <th>Order</th>
+                <th>Q of Questions</th>
             </tr>
             </thead>
         <tbody>

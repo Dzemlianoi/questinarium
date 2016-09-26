@@ -203,28 +203,26 @@ div.message-error{
 .button-forms-add-nav{
     margin-right:30px;
 }
-th:nth-child(1), td:nth-child(1) {
-    width: 50px;
-}
-th:nth-child(2), td:nth-child(2) {
+
+th:nth-child(1), td:nth-child(2) {
     width: 150px;
 }
-th:nth-child(3), td:nth-child(3) {
+th:nth-child(2), td:nth-child(3) {
     width: 100px;
 }
-th:nth-child(4), td:nth-child(4) {
+th:nth-child(3), td:nth-child(4) {
     width:100px;
 }
 
 tr {
     display: table;
-    width: 400px;
+    width: 350px;
     table-layout: fixed;
 }
 tbody {
     display: block;
     height: 154px;
-    width: 400px;
+    width: 350px;
     overflow: hidden;
     overflow-y: auto;
 }
