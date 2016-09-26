@@ -10,8 +10,14 @@
             </thead>
         <tbody>
         <?php
-            foreach ($data as $question){
-                echo $this->render('row.php',['question'=>$question]);
+            foreach ($data as $form_id=>$questions) {
+                echo "<tr class='header-group-formname'>
+                        <td colspan='4'>$form_id</td>
+                      </tr>";
+                foreach ($questions as $question) {
+                    echo $this->render('row.php', ['question' => $question]);
+
+                }
             }
         ?>
         </tbody>

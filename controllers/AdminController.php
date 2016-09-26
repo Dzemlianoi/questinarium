@@ -226,7 +226,7 @@ class AdminController extends \yii\web\Controller
     public function actionDeleteQuestion($id){
 //
         Answers::deleteAll("question_id=$id");
-        echo Questions::findOne(["id"=>$id])->delete();
+        echo Questions::findOne(["id"=>$id])->delete()?true:0;
     }
 
     public function actionExit(){

@@ -243,6 +243,15 @@ tbody {
 .questions-show th:nth-child(4), .questions-show td:nth-child(4) {
     width:175px;
 }
+tr.header-group-formname td:nth-child(1){
+    font-size:16px;
+    text-align: center;
+    background-color: cornflowerblue;
+    opacity:0.9;
+    /*text-shadow: #1a1a1a 1px;*/
+    font-weight: bold;
+    /*color:white;*/
+}
 
 .questions-show td{
     text-align: justify ;
