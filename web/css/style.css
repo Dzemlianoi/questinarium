@@ -39,6 +39,9 @@ div.status-red{
 .form-add-workspace{
     text-align: center;
 }
+.marg-20{
+    margin-top:20px;
+}
 /*Main*/
 .message-soon{
     background-color:white;
@@ -357,6 +360,21 @@ tr.header-group-formname td:nth-child(1){
 .answer{
     margin-bottom:20px;
 }
+.question-answers .form-group{
+    width:30%;
+}
+.label-questions,.input-questions{
+    display:inline-block;
+    vertical-align: middle;
+}
+.label-questions{
+    width:180px;
+}
+.input-questions input{
+    width:15px;
+    height:15px;
+}
+
 .has-answers-table-question{
     text-align: left;
 }

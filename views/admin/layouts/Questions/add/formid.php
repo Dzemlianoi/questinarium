@@ -2,7 +2,16 @@
 if ($data['button']=='next'){
     $result="<button id='questionform' type='button' class='btn-primary btn'>Next</button>";
 }else{
-    $result="<button id='questionsubmit' type='button' class='btn-success btn'>Save</button>";
+    $result="
+        <div class='form-group marg-20'>
+            <div class='label-questions'>
+                <label for='required'>Required question?</label>
+            </div>
+            <div class='input-questions'>
+                <input type='checkbox' value='1' id='required'>
+            </div>
+         </div>
+         <button id='questionsubmit' type='button' class='btn-success btn'>Save</button>";
 }
 ?>
 
