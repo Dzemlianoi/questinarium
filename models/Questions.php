@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "questions".
@@ -11,6 +12,8 @@ use Yii;
  * @property string $name
  * @property string $type
  * @property integer $form_id
+ * @property integer $is_required
+ * @property integer $order
  *
  * @property Answers[] $answers
  * @property Forms $form
@@ -32,7 +35,7 @@ class Questions extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'type', 'form_id'], 'required'],
-            [['form_id'], 'integer'],
+            [['form_id', 'is_required', 'order'], 'integer'],
             [['name'], 'string', 'max' => 100],
             [['type'], 'string', 'max' => 40],
             [['form_id'], 'exist', 'skipOnError' => true, 'targetClass' => Forms::className(), 'targetAttribute' => ['form_id' => 'id']],
@@ -49,6 +52,8 @@ class Questions extends \yii\db\ActiveRecord
             'name' => 'Name',
             'type' => 'Type',
             'form_id' => 'Form ID',
+            'is_required' => 'Is Required',
+            'order' => 'Order',
         ];
     }
 
@@ -70,6 +75,7 @@ class Questions extends \yii\db\ActiveRecord
 
     public static function getAllQuestions(){
         $questions = Questions::find()->joinWith('answers')->joinWith('form')->asArray()->orderBy('forms.order')->all();
-        return $questions;
+        $new_questions=ArrayHelper::index($questions,'form_id');
+        return $new_questions;
     }
 }
