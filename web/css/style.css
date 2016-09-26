@@ -251,11 +251,10 @@ tbody {
     width: 75px;
 }
 .questions-show th:nth-child(3), .questions-show td:nth-child(3) {
-    width: 75px;
+    width: 175px;
+    text-align: center;
 }
-.questions-show th:nth-child(4), .questions-show td:nth-child(4) {
-    width:175px;
-}
+
 tr.header-group-formname td:nth-child(1){
     font-size:16px;
     text-align: center;
@@ -276,13 +275,13 @@ tr.header-group-formname td:nth-child(1){
 
 .questions-show tr {
     display: table;
-    width: 525px;
+    width: 450px;
     table-layout: fixed;
 }
 .questions-show tbody {
     display: block;
-    height: 400px;
-    width: 525px;
+    height: 350px;
+    width: 450px;
     overflow: hidden;
     overflow-y: auto;
 

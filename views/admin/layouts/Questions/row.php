@@ -14,7 +14,6 @@ if (!empty($question['answers'])){
 <tr id="question<?=$question['id']?>"?>
     <td><?=$question['name']?></td>
     <td><?=$question['type']?></td>
-    <td><?=$question['form']['name']?></td>
     <td><?=$data?></td>
 </tr>
 

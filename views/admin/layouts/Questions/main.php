@@ -4,7 +4,6 @@
             <tr>
                 <th>Question</th>
                 <th>Type</th>
-                <th>Form</th>
                 <th>Answers</th>
             </tr>
             </thead>
@@ -12,7 +11,7 @@
         <?php
             foreach ($data as $form_id=>$questions) {
                 echo "<tr class='header-group-formname'>
-                        <td colspan='4'>$form_id</td>
+                        <td colspan='3'>$form_id</td>
                       </tr>";
                 foreach ($questions as $question) {
                     echo $this->render('row.php', ['question' => $question]);
