@@ -3,7 +3,8 @@ if (!empty($question['answers'])){
     $data='<ul>';
     foreach ($question['answers'] as $answer){
         $name_answer=$answer['answer'];
-        $data.="<li>$name_answer</li>";
+        $type=$question['type'];
+        $data.="<div class='has-answers-table-question'><input type='$type' disabled/> $name_answer</div>";
     }
     $data.='</ul>';
 }else{

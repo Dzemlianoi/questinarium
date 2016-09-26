@@ -278,6 +278,11 @@ tr.header-group-formname td:nth-child(1){
     width: 450px;
     table-layout: fixed;
 }
+.questions-show tbody tr:hover{
+    background-color: darkorange;
+    cursor:pointer;
+    opacity:0.9;
+}
 .questions-show tbody {
     display: block;
     height: 350px;
@@ -318,7 +323,7 @@ tr.header-group-formname td:nth-child(1){
 
 .field-row{
     width:100%;
-    padding:10px 15px;
+    padding:7px 15px;
 }
 .field-number,.field-label, .field-row select, .field-row button, .field-row input[type='text']{
     display: inline-block;
@@ -329,11 +334,11 @@ tr.header-group-formname td:nth-child(1){
     width:20%;
 }
 .field-number{
-    font-size:60px;
-    width:60px;
+    font-size:30px;
+    width:40px;
 }
 .field-label{
-    font-size:30px;
+    font-size:24px;
 }
 .field-row button{
     width:100px;
@@ -351,4 +356,7 @@ tr.header-group-formname td:nth-child(1){
 }
 .answer{
     margin-bottom:20px;
+}
+.has-answers-table-question{
+    text-align: left;
 }
