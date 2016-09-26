@@ -12,6 +12,8 @@ class m160906_091930_create_task extends Migration
             'name'=>$this->string(100)->notNull(),
             'type' => $this->string(40)->notNull(),
             'form_id'=>$this->integer()->notNull(),
+            'is_required'=>$this->boolean(),
+            'order'=>$this->integer(100),
         ]);
 
     }
