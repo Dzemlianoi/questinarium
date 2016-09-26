@@ -29,6 +29,7 @@ var App={
         $('#questionform').click(this.showQuestionAnswers);
         $('.more-answers').click(this.showAdditionalAnswer);
         $('#questionsubmit').click(this.saveQuestion);
+        $('#questiondel').click(this.showDelQuestions);
 
     },
     disabling:function(){
@@ -53,6 +54,7 @@ var App={
         $('#questionform').off('click');
         $('.more-answers').off('click');
         $('#questionsubmit').off('click');
+        $('#questiondel').off('click');
 
 
 
@@ -403,7 +405,12 @@ var App={
         }else{
             $('.question-name-input').focus();
         }
+    },
 
+    showDelQuestions:function(){
+        var url="/web/index.php?r=admin/show-questions-del-form";
+        var form='.question-delete';
+        return App.showForm(url,form);
     }
 };
 

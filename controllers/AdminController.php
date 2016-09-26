@@ -219,6 +219,11 @@ class AdminController extends \yii\web\Controller
         }
     }
 
+    public function actionShowQuestionsDelForm(){
+        $url='./layouts/Questions/delete/delete.php';
+        return $this->renderSmthQuestions($url);
+    }
+
     public function actionExit(){
         session_destroy();
         return $this->goHome();

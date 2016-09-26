@@ -27,7 +27,7 @@
         <i class="glyphicon glyphicon-pencil"></i> Edit a question
     </button>
 
-    <button type="button" id="admindel" class="button-forms-add-nav btn btn-warning">
+    <button type="button" id="questiondel" class="button-forms-add-nav btn btn-warning">
         <i class="glyphicon glyphicon-minus"></i> Delete a question
     </button>
 </div>
