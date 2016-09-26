@@ -161,6 +161,21 @@ div.message-error{
 .big-ico{
     font-size:3em;
 }
+
+/*Add admin */
+
+.admins-show tbody, .admins-show tr,.admins-show thead{
+    width:450px;
+}
+.admins-show th:nth-child(1), .admins-show td:nth-child(1){
+    width:200px;
+}
+.admins-show th:nth-child(2),.admins-show td:nth-child(2){
+    width:150px;
+}
+.admins-show th:nth-child(3),.admins-show td:nth-child(3){
+    width:100px;
+}
 /*Добавить форму*/
 .show-form-div{
     width:30%;
@@ -302,7 +317,6 @@ tr.header-group-formname td:nth-child(1){
     font-size:16px;
 }
 
-/*Questions*/
 .field-row{
     width:100%;
     padding:10px 15px;

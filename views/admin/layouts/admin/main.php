@@ -1,8 +1,7 @@
 <div class="show-form-div">
-    <table class="forms-show">
+    <table class="admins-show">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>E-mail</th>
                 <th>Login</th>
                 <th>Password</th>
