@@ -322,19 +322,23 @@ var App={
         var url = "/web/index.php?r=admin/show-add-question-formid";
         var form='.question-formid';
         var button=App.typesWithAnswers.indexOf(type)!=-1?'next':'save';
-        $.ajax({
-            url: url,
-            data:{
-                button:button
-            },
-            success: function (data) {
-                $('#questionname').detach();
-                $('.form-add-questions').append(data);
-                $(form).fadeIn('go-hide',function(){
-                    App.init();
-                })
-            }
-        });
+
+        if ($('.question-name-input').val() != ''){
+            $.ajax({
+                url: url,
+                data:{
+                    button:button
+                },
+                success: function (data) {
+                    $('#questionname').detach();
+                    $('.form-add-questions').append(data);
+                    $(form).fadeIn('go-hide',function(){
+                        App.init();
+                    })
+                }
+            });
+        }
+
     },
 
     showQuestionAnswers:function(){
