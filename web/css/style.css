@@ -65,6 +65,11 @@ div.status-red{
 .nav-row{
     padding-left:20px;
     margin:0;
+    border: 0;
+    border-radius: 0;
+    position: fixed;
+    z-index: 2;
+    width: 100%;
 }
 
 .nav-row .navbar-nav a:hover{
