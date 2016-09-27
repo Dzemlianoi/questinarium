@@ -33,7 +33,7 @@ $this->beginPage();
     ];
 
     $menuItems[]= [
-        'label' => 'Contacts <span class="glyphicon glyphicon-home"></span>',
+        'label' => 'Contacts <span class="glyphicon glyphicon-user"></span>',
         'url' => ['/']
     ];
 

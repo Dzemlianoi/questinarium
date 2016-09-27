@@ -40,6 +40,8 @@ div.status-red{
 }
 .wrapper-work-admin{
     width:92%;
+    margin: 50px auto 0;
+    float: right;
 }
 .form-add-workspace{
     text-align: center;
@@ -70,6 +72,11 @@ div.status-red{
 .nav-row{
     padding-left:20px;
     margin:0;
+    border: 0;
+    border-radius: 0;
+    position: fixed;
+    z-index: 2;
+    width: 100%;
 }
 
 .nav-row .navbar-nav a:hover{
@@ -108,8 +115,11 @@ div.message-error{
     margin-top: 30px;
 }
 .left-pannel{
+    position: fixed;
+    top: 50px;
     height:615px;
-    width:105px;
+    max-width:105px;
+    width: 10%;
     opacity: 0.9;
     background-color:ivory;
     float:left;
@@ -186,12 +196,10 @@ div.message-error{
 }
 /*Добавить форму*/
 .show-form-div{
-    width:30%;
+    width:450px;
     margin:30px auto 10px;
 }
-.questions-form-div{
-    width:42%;
-}
+
 .show-form-div table{
     border-top: none;
     width:100%;
@@ -227,25 +235,29 @@ div.message-error{
     margin-right:30px;
 }
 
-th:nth-child(1), td:nth-child(2) {
-    width: 150px;
+.forms-show table{
+    margin: 0 auto;
+    width: 450px;
 }
-th:nth-child(2), td:nth-child(3) {
+.forms-show table th:nth-child(1), .forms-show td:nth-child(1) {
+    width: 250px;
+}
+.forms-show th:nth-child(2), .forms-show td:nth-child(2) {
     width: 100px;
 }
-th:nth-child(3), td:nth-child(4) {
+.forms-show th:nth-child(3), .forms-show td:nth-child(3) {
     width:100px;
 }
 
 tr {
     display: table;
-    width: 350px;
+    width: 450px;
     table-layout: fixed;
 }
 tbody {
     display: block;
     height: 154px;
-    width: 350px;
+    width: 450px;
     overflow: hidden;
     overflow-y: auto;
 }
