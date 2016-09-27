@@ -71,6 +71,24 @@ var App={
         })
     },
 
+    //CheckEmpty
+
+    checkEmptyQuestionName:function(){
+        return $('.question-name-input').val() == '';
+    },
+
+    checkNotEmptyAnswers:function(){
+        var check = false;
+        $('.answer-input').each(
+            function(){
+                if ($(this).val() != ''){
+                    check = true;
+                }
+            }
+        );
+        return check;
+    },
+
     //Left-menu
 
     categoryChange:function () {
@@ -323,7 +341,7 @@ var App={
         var form='.question-formid';
         var button=App.typesWithAnswers.indexOf(type)!=-1?'next':'save';
 
-        if ($('.question-name-input').val() != ''){
+        if (!App.checkEmptyQuestionName()){
             $.ajax({
                 url: url,
                 data:{
@@ -399,7 +417,7 @@ var App={
             custom=0;
         }
 
-        if ($('.question-name-input').val()!=''){
+        if (!App.checkEmptyQuestionName() && App.checkNotEmptyAnswers()){
             $.ajax({
                 url:url,
                 data:{
