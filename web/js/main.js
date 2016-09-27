@@ -387,7 +387,8 @@ var App={
         var formid=$('.question-formid select option:selected').val();
         var name=$('.question-name-input').val();
         var url="/web/index.php?r=admin/save-question";
-
+        var required=$('#required').is(':checked')?1:'';
+        var custom=$(this).hasClass('with-answers')?($('#custom').is(':checked')?1:''):'';
         if ($('.question-name-input').val()!=''){
             $.ajax({
                 url:url,
@@ -395,6 +396,8 @@ var App={
                     name:name,
                     type:type,
                     formid:formid,
+                    required:required,
+                    custom:custom,
                     answers:JSON.stringify(answers)
                 },
                 success: function (data) {
