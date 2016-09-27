@@ -13,6 +13,7 @@ use yii\helpers\ArrayHelper;
  * @property string $type
  * @property integer $form_id
  * @property integer $is_required
+ * @property integer $has_custom_order
  * @property integer $order
  *
  * @property Answers[] $answers
@@ -35,7 +36,7 @@ class Questions extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'type', 'form_id'], 'required'],
-            [['form_id', 'is_required', 'order'], 'integer'],
+            [['form_id', 'is_required', 'has_custom_order', 'order'], 'integer'],
             [['name'], 'string', 'max' => 100],
             [['type'], 'string', 'max' => 40],
             [['form_id'], 'exist', 'skipOnError' => true, 'targetClass' => Forms::className(), 'targetAttribute' => ['form_id' => 'id']],
@@ -53,6 +54,7 @@ class Questions extends \yii\db\ActiveRecord
             'type' => 'Type',
             'form_id' => 'Form ID',
             'is_required' => 'Is Required',
+            'has_custom_order' => 'Has Custom Order',
             'order' => 'Order',
         ];
     }
