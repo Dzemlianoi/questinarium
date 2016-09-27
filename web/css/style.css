@@ -21,6 +21,11 @@ div.status-red{
 .go-hide{
     display: none;
 }
+.red-star{
+    color:red;
+    text-transform: uppercase;
+    font-size:18px;
+}
 /*Wrappers*/
 .main-wrapper{
     width:100%;

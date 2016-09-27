@@ -197,11 +197,14 @@ class AdminController extends \yii\web\Controller
         return $this->renderAjax($url);
     }
 
-    public function actionSaveQuestion($name,$formid,$type,$answers=NULL){
+    public function actionSaveQuestion($name,$formid,$type,$required,$custom=NULL,$answers=NULL){
         $question=new Questions;
         $question->name=$name;
         $question->form_id=$formid;
         $question->type=$type;
+        $question->is_required=!empty($required)?$required:0;
+        $question->has_custom_order=!empty($custom)?$custom:0;
+
         if ($question->save()){
             if (in_array($question->type,$this->type_with_answers)){
                 $answers=json_decode($answers);

@@ -382,11 +382,18 @@ var App={
     },
 
     saveQuestion:function(){
+        var custom;
         var answers=$(this).hasClass('with-answers')?App.getAllAnswers():'';
         var type=$('.type-question-choose option:selected').val();
         var formid=$('.question-formid select option:selected').val();
         var name=$('.question-name-input').val();
         var url="/web/index.php?r=admin/save-question";
+        var required=$('#required').is(':checked')?1:0;
+        if ($(this).hasClass('with-answers')){
+            custom=$('#custom').is(':checked')?1:0;
+        }else{
+            custom=0;
+        }
 
         if ($('.question-name-input').val()!=''){
             $.ajax({
@@ -395,6 +402,8 @@ var App={
                     name:name,
                     type:type,
                     formid:formid,
+                    required:required,
+                    custom:custom,
                     answers:JSON.stringify(answers)
                 },
                 success: function (data) {
