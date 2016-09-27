@@ -108,8 +108,11 @@ div.message-error{
     margin-top: 30px;
 }
 .left-pannel{
+    position: fixed;
+    top: 50px;
     height:615px;
-    width:105px;
+    max-width:105px;
+    width: 10%;
     opacity: 0.9;
     background-color:ivory;
     float:left;
