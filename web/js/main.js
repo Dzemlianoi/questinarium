@@ -89,6 +89,18 @@ var App={
         return check;
     },
 
+    checkAllNotEmptyAnswers:function(){
+        var check = true;
+        $('.answer-input').each(
+            function(){
+                if ($(this).val() == ''){
+                    check = false;
+                }
+            }
+        );
+        return check;
+    },
+
     //Left-menu
 
     categoryChange:function () {
@@ -383,14 +395,19 @@ var App={
     showAdditionalAnswer:function(){
         if ($(this).siblings().val()!=''){
             var url="/web/index.php?r=admin/add-additional-answer";
-            $.ajax({
-                url:url,
-                success: function (data) {
-                    $('.more-answers').detach();
-                    $('.answers').append(data);
-                    App.init();
-                }
-            });
+            if (App.checkAllNotEmptyAnswers()) {
+                $.ajax({
+                    url:url,
+                    success: function (data) {
+                        $('.more-answers').detach();
+                        $('.answers').append(data);
+                        App.init();
+                    }
+                });
+            }else{
+                $('.answer-input').focus();
+            }
+
         }
     },
     getAllAnswers:function () {
