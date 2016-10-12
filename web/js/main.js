@@ -71,6 +71,36 @@ var App={
         })
     },
 
+    //CheckEmpty
+
+    checkEmptyQuestionName:function(){
+        return $('.question-name-input').val() == '';
+    },
+
+    checkNotEmptyAnswers:function(){
+        var check = false;
+        $('.answer-input').each(
+            function(){
+                if ($(this).val() != ''){
+                    check = true;
+                }
+            }
+        );
+        return check;
+    },
+
+    checkAllNotEmptyAnswers:function(){
+        var check = true;
+        $('.answer-input').each(
+            function(){
+                if ($(this).val() == ''){
+                    check = false;
+                }
+            }
+        );
+        return check;
+    },
+
     //Left-menu
 
     categoryChange:function () {
@@ -322,19 +352,23 @@ var App={
         var url = "/web/index.php?r=admin/show-add-question-formid";
         var form='.question-formid';
         var button=App.typesWithAnswers.indexOf(type)!=-1?'next':'save';
-        $.ajax({
-            url: url,
-            data:{
-                button:button
-            },
-            success: function (data) {
-                $('#questionname').detach();
-                $('.form-add-questions').append(data);
-                $(form).fadeIn('go-hide',function(){
-                    App.init();
-                })
-            }
-        });
+
+        if (!App.checkEmptyQuestionName()){
+            $.ajax({
+                url: url,
+                data:{
+                    button:button
+                },
+                success: function (data) {
+                    $('#questionname').detach();
+                    $('.form-add-questions').append(data);
+                    $(form).fadeIn('go-hide',function(){
+                        App.init();
+                    })
+                }
+            });
+        }
+
     },
 
     showQuestionAnswers:function(){
@@ -361,14 +395,19 @@ var App={
     showAdditionalAnswer:function(){
         if ($(this).siblings().val()!=''){
             var url="/web/index.php?r=admin/add-additional-answer";
-            $.ajax({
-                url:url,
-                success: function (data) {
-                    $('.more-answers').detach();
-                    $('.answers').append(data);
-                    App.init();
-                }
-            });
+            if (App.checkAllNotEmptyAnswers()) {
+                $.ajax({
+                    url:url,
+                    success: function (data) {
+                        $('.more-answers').detach();
+                        $('.answers').append(data);
+                        App.init();
+                    }
+                });
+            }else{
+                $('.answer-input').focus();
+            }
+
         }
     },
     getAllAnswers:function () {
@@ -395,7 +434,7 @@ var App={
             custom=0;
         }
 
-        if ($('.question-name-input').val()!=''){
+        if (!App.checkEmptyQuestionName() && App.checkNotEmptyAnswers()){
             $.ajax({
                 url:url,
                 data:{
